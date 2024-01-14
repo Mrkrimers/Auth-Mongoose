@@ -1,7 +1,8 @@
 import { Inter } from 'next/font/google'
-import './globals.css'
+import './globals.scss'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
+import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -13,11 +14,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      
+
       <body className={inter.className}>
         <Header />
 
-        {children}
+        <main>
+          {children}
+
+          <div className="wrapperImg">
+            <Image src='/Rectangle.png' width={559} height={415} alt='Rectangle' loading="eager" priority="high" />
+            <h1>Welcome</h1>
+            <p>Just Smile</p>
+          </div>
+        </main>
 
         <Footer />
       </body>

@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    padding-block: 20px;
+
+    p {
+        color: #000;
+        font: 500 20px Poppins;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .active {
+        background: #000842d9;
+        color: white;
+        padding: 5px 18px;
+        border-radius: 20px;
+    }
+}
