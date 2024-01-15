@@ -2,17 +2,35 @@
 
 import style from './style.module.scss'
 import { Button, TextField } from "@mui/material"
+import axios from 'axios'
 import Link from "next/link"
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function Reg() {
     const [inpData, setInpData] = useState({})
+    const router = useRouter();
 
-    const arr = [{ label: "Name" }, { label: "Surname" }, { label: "Email" }, { label: "Password" }, { label: "Age" }]
+    const arr = [{ label: "Name", name: "name" }, { label: "Surname", name: "surname" }, { label: "Email", name: "email" }, { label: "Password", name: "password" }, { label: "Age", name: "age" }]
 
-    const getData = (e) => {
+    const getInputData = (e) => {
         setInpData({ ...inpData, [e.target.name]: e.target.value })
     }
+
+    const sendData = async () => {
+        try {
+            const data = await axios.post('http://localhost:3001/user', inpData, {
+                withCredentials: true
+            });
+
+            if (!data.data) throw new Error('УПС');
+            router.push('/home');
+        } catch (err) {
+            alert(err.message);
+            return []
+        }
+    }
+
 
     return (
 
@@ -28,12 +46,12 @@ export default function Reg() {
                         id="standard-basic"
                         label={el.label}
                         variant="standard"
-                        name={el.label}
-                        onChange={getData}
+                        name={el.name}
+                        onChange={getInputData}
                     />
                 )}
 
-                <Button variant="contained" onClick={() => console.log(inpData)}>Register</Button>
+                <Button variant="contained" onClick={sendData}>Register</Button>
             </div>
         </div>
 
