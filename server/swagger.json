@@ -14,7 +14,24 @@
                 "summary": "Получаем всех пользователей по запросу",
                 "description": "Жми на кнопку `Try` для получения всех сохраненных пользователей",
                 "responses": {
-                    "200": {},
+                    "200": {
+                        "description": "Успешный ответ имеет вид:",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "_id": "659c376b7da83b49e5624bce",
+                                        "name": "test",
+                                        "surname": "test",
+                                        "email": "test@mail.ru",
+                                        "password": "$2b$10$WBBzr3GmXYyA8QqQGYVUqujfjo66RIMAgowkLcNSc/5HrG65SC2v.",
+                                        "age": 33,
+                                        "__v": 0
+                                    }
+                                ]
+                            }
+                        }
+                    },
                     "404": {}
                 }
             },
@@ -23,6 +40,62 @@
                     "USER"
                 ],
                 "summary": "Создание пользователя",
+                "description": "После нажатия на кнопку `Try it out` ОБЯЗАТЕЛЬНО заполнить поля ввода email & password",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "surname": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "age": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ имеет вид:",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "_id": "659c376b7da83b49e5624bce",
+                                        "name": "test",
+                                        "surname": "test",
+                                        "email": "test@mail.ru",
+                                        "password": "$2b$10$WBBzr3GmXYyA8QqQGYVUqujfjo66RIMAgowkLcNSc/5HrG65SC2v.",
+                                        "age": 33,
+                                        "__v": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/auth": {
+            "post": {
+                "tags": [
+                    "USER"
+                ],
+                "summary": "Авторизация пользователя",
                 "description": "Обязательно заполнить поля ввода email & password",
                 "responses": {
                     "200": {},
