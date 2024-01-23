@@ -42,5 +42,12 @@ route.post('/auth', async (req, res) => {
     }
 })
 
+route.put('/', async (req, res) => {
+    try {
+        
+    } catch (err) {
+        buildResponse(res, 404, err.message)
+    }
+})
 
 module.exports = route;
