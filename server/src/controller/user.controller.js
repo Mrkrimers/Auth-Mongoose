@@ -1,6 +1,6 @@
 const route = require('express').Router();
 const { buildResponse } = require('../helper/buildResponse')
-const { getAll, createUser, authUser } = require('../service/user.service');
+const { getAll, createUser, authUser, updateUser, deleteUser } = require('../service/user.service');
 const { createToken } = require('../helper/jwt');
 
 route.get('/', async (req, res) => {
@@ -42,12 +42,19 @@ route.post('/auth', async (req, res) => {
     }
 })
 
-route.put('/', async (req, res) => {
+route.put('/:_id', async (req, res) => {
     try {
-        
+        buildResponse(res, 200, await updateUser(req.params._id, req.body))
     } catch (err) {
         buildResponse(res, 404, err.message)
     }
 })
 
+route.delete('/:_id', async (req, res) => {
+    try {
+        buildResponse(res, 200, await deleteUser(req.params._id))
+    } catch (err) {
+        buildResponse(res, 404, err.message)
+    }
+})
 module.exports = route;
