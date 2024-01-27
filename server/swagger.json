@@ -166,6 +166,43 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "USER"
+                ],
+                "summary": "Удаление пользователя",
+                "description": "Для удаления введите ID пользователя",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успешный ответ имеет вид:",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "_id": "659c376b7da83b49e5624bce",
+                                        "name": "test",
+                                        "surname": "test",
+                                        "email": "test@mail.ru",
+                                        "password": "$2b$10$WBBzr3GmXYyA8QqQGYVUqujfjo66RIMAgowkLcNSc/5HrG65SC2v.",
+                                        "age": 33,
+                                        "__v": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
             }
         }
     }

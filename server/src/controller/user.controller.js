@@ -57,4 +57,5 @@ route.delete('/:_id', async (req, res) => {
         buildResponse(res, 404, err.message)
     }
 })
+
 module.exports = route;
